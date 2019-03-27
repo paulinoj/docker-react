@@ -1,0 +1,12 @@
+# Need this when running docker
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t paulinoj/docker-react -f Dockerfile.dev .
+
+# -- --coverage is a trick for making sure tests end instead of prsenting menu after run
+script:
+  - docker run paulinoj/docker-react npm run test -- --coverage
