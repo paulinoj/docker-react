@@ -1,0 +1,15 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
+
+# pwd stands for present working directory
+# Mapping volumes
+# docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app [hashgoeshere]
