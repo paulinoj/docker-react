@@ -10,3 +10,20 @@ before_install:
 # -- --coverage is a trick for making sure tests end instead of prsenting menu after run
 script:
   - docker run paulinoj/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-001608536802"
+  bucket_path: "docker-react"
+  # Only deploy when master branch changes
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+  
+
+
